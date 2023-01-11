@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+:root{
+    --line-fill: #3498db;
+    --line-empty: #e0e0e0;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -7,9 +12,9 @@
 }
 
 body{
+    background-color: #f6f7fb;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    flex-direction: column;
     height: 100vh;
     justify-content: center;
     align-items: center;
@@ -18,47 +23,77 @@ body{
 }
 
 .container{
+    text-align: center;
+}
+
+.container-progress{
     display: flex;
-    width: 90vw;
-}
-
-.panel{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 80vh;
-    border-radius: 20px;
-    color: #fff;
-    flex: 0.5;
+    justify-content: space-between;
     position: relative;
-    margin: 10px;
-    transition: flex 0.7s ease-in;
+    margin-bottom: 30px;
+    max-width: 100%;
+    width: 350px;
 }
 
-.panel h3{
-    font-size: 24px;
+.container-progress::before{
+    content: '';
+    background-color: var(--line-empty);
     position: absolute;
-    left: 30px;
-    bottom: 30px;
-    margin: 0;
-    opacity: 0;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    z-index: -1;
+}
+.progress{
+    background-color: var(--line-fill);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 0%;
+    z-index: -1;
+    transition: .3s ease;
 }
 
-.panel.active{
-    flex: 5;
+.circle{
+    background-color: #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--line-empty);
 }
 
-.panel.active h3{
-    opacity: 1;
-    transition: opacity .3s ease-in .4s;
+.circle.active{
+    border-color: var(--line-fill);
 }
 
-@media(max-width: 400px){
-    .container{
-        width: 100vw;
-    }
-    .panel:nth-last-of-type(4),
-    .panel:nth-last-of-type(5){
-        display: none;
-    }
+.btn{
+    background-color: var(--line-fill);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px 30px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.btn:active{
+    transform: scale(.98);
+}
+
+.btn:focus{
+    outline: none;
+}
+
+.btn:disabled{
+    background-color: var(--line-empty);
+    cursor: not-allowed;
 }
